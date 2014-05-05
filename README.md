@@ -9,13 +9,13 @@ Before you can work with data you have to get some. This course will cover the b
 
 ###Course Content
 - Data collection
-- - Raw files (.csv,.xlsx)
-- - Databases (mySQL)
-- - APIs
+ - Raw files (.csv,.xlsx)
+ - Databases (mySQL)
+ - APIs
 - Data formats
-- -Flat files (.csv,.txt)
-- - XML
-- - JSON
+ - Flat files (.csv,.txt)
+ - XML
+ - JSON
 - Making data tidy
 - Distributing data
 - Scripting for data cleaning
