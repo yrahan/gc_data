@@ -1,7 +1,6 @@
-gc_data
-=======
+**[Getting and Cleaning Data](https://class.coursera.org/getdata-003/wiki/syllabus)** 
 
-**[Getting and Cleaning Data](https://class.coursera.org/getdata-003/wiki/syllabus)** by Jeff Leek, PhD, online Coursera course, part of the Data Scientist specialization.
+by Jeff Leek, PhD, online Coursera course, part of the Data Scientist specialization.
 
 
 ###Course Description
