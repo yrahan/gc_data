@@ -12,8 +12,9 @@ download.file(fileUrl, destfile=dataFilePath, method="curl", mode="wb")
 # read downloaded file
 mydata <- read.xlsx(dataFilePath, sheetIndex=1, header=FALSE)
 
-# # example of reading only a subset
-# colIndex <- 18:23
-# rowIndex <- 7:15
-# dat <- read.xlsx(dataFilePath, sheetIndex=1, header=FALSE, 
-#                          colIndex=colIndex, rowIndex=rowIndex)
+# example of reading only a subset
+colIndex <- 18:23
+rowIndex <- 7:15
+dat <- read.xlsx(dataFilePath, sheetIndex=1, header=TRUE,
+                 colIndex=colIndex, rowIndex=rowIndex)
+#sum(dat$Zip*dat$Ext,na.rm=T) 
