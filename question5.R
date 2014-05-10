@@ -19,9 +19,20 @@ DT <- fread(dataFilePath)
 
 # Which of the following is the fastest way to calculate the average value of the variable
 
+tapply(DT$pwgtp15,DT$SEX,mean)
 system.time(tapply(DT$pwgtp15,DT$SEX,mean))
+
+sapply(split(DT$pwgtp15,DT$SEX),mean)
 system.time(sapply(split(DT$pwgtp15,DT$SEX),mean))
-system.time({rowMeans(DT)[DT$SEX==1]; rowMeans(DT)[DT$SEX==2]})
-system.time({mean(DT[DT$SEX==1,]$pwgtp15); mean(DT[DT$SEX==2,]$pwgtp15)})
+
+mean(DT$pwgtp15,by=DT$SEX)
 system.time(mean(DT$pwgtp15,by=DT$SEX))
-system.time(DT[,mean(pwgtp15),by=SEX])
+
+rowMeans(DT)[DT$SEX==1]; rowMeans(DT)[DT$SEX==2]
+system.time({rowMeans(DT)[DT$SEX==1]; rowMeans(DT)[DT$SEX==2]})
+
+DT[,mean(pwgtp15),by=SEX]
+systeme.time(DT[,mean(pwgtp15),by=SEX])
+
+mean(DT[DT$SEX==1,]$pwgtp15); mean(DT[DT$SEX==2,]$pwgtp15)
+system.time({mean(DT[DT$SEX==1,]$pwgtp15); mean(DT[DT$SEX==2,]$pwgtp15)})
