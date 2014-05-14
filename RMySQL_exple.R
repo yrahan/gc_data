@@ -1,5 +1,7 @@
+library(RMySQL)
+
 # show databases
-cscDb <- dbConnect(MySQL(), 
+ucscDb <- dbConnect(MySQL(), 
                     user="genome", 
                     host="genome-mysql.cse.ucsc.edu")
 
