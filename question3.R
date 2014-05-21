@@ -19,7 +19,7 @@ if(!file.exists("./data")){dir.create("./data")}
 # Gross Domestic Product
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv "
 download.file(fileUrl,destfile="./data/gdp.csv",method="curl")
-gdp <- read.csv("./data/gdp.csv")
+gdp <- read.csv("./data/gdp.csv", header=FALSE, stringsAsFactors=FALSE)
 # educational data
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
 download.file(fileUrl,destfile="./data/educational.csv",method="curl")
@@ -27,18 +27,30 @@ educational <- read.csv("./data/educational.csv")
 
 
 names(educational)
+head(educational)
+head(gdp)
+tail(gdp)
+names(gdp)
 unique(educational$CountryCode)
 head(gdp)
-names(gdp)
-gdp <- gdp[gdp$X != "",]
-unique(gdp$X)
+
+
 # cleaning
-gdp<-gdp[5:194,]
+gdp<-gdp[6:195,]
+names(gdp)[1] <- "CountryCode"
+names(gdp)[2] <- "Ranking"
+names(gdp)[5] <- "Gross.domestic.product.2012"
+
 # merging
 
-mergedData = merge(gdp,educational,by.x="X",by.y="CountryCode")
-mergedData$Gross.domestic.product.2012 = as.integer(
-  as.character(
-    mergedData$Gross.domestic.product.2012))
-sum(!is.na(unique(mergedData$Gross.domestic.product.2012)))
-head(gdp)
+mergedData = merge(gdp,educational,by="CountryCode")
+class(mergedData$Gross.domestic.product.2012)
+# remove comma of thousands before converting characters to numeric
+mergedData$Gross.domestic.product.2012 = as.numeric(
+  gsub(",","", mergedData$Gross.domestic.product.2012))
+  
+sum(!is.na(unique(mergedData$CountryCode)))
+mergedData$Ranking <- as.numeric(mergedData$Ranking)
+orderedData <- mergedData[order(mergedData$Ranking),]
+
+orderedData$Long.Name[[13]]
