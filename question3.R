@@ -74,3 +74,4 @@ mergedData$quantileRankingGrps <- cut(mergedData$Ranking, breaks=rankings)
 ?cut
 mergedData[ mergedData$Income.Group == "Lower middle income", .N, 
             by=c("Income.Group", "quantileRankingGrps")]
+table(mergedData$Income.Group,mergedData$Gross.domestic.product.2012)
