@@ -50,20 +50,13 @@ onlyMeanStdData <- oneDataSet[c("subject", "activity", as.character(onlyMeanStd$
 
 # 5. Creates a second, independent tidy data set with the average of each variable 
 # for each activity and each subject. 
+library(reshape2)
+## melt the dataset
+names(oneDataSet)
+id_vars=c("subject", "activity")
+measure_vars=as.character(onlyMeanStd$feature)
+meltedData<-melt(onlyMeanStdData, id=id_vars, measure.vars=measure_vars)
 
-aggregate(oneDataSet[,3])
-str(oneDataSet[,3])
-str(oneDataSet)
-
-means <- aggregate(oneDataSet[,3] ~ oneDataSet$subject + oneDataSet$activity, 
-                   data = oneDataSet, FUN = mean)
-
-for (i in 4:ncol(oneDataSet)){
-    means[,i] <- aggregate( oneDataSet[,i] ~ oneDataSet$subject + oneDataSet$activity, 
-                            data = oneDataSet, FUN = mean )[,3]
-}
-
-colnames(means) <- column_headers
-
-unique(oneDataSet$activity       )
-6*24
+tidyData <- dcast(meltedData, subject + activity ~ variable, mean)
+# save tidy data
+write.table(tidyData,"./output/tidy_data.txt")
