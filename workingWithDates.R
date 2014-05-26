@@ -17,3 +17,18 @@ weekdays(d2)
 months(d2)
 # Converting to Julian
 julian(d2)
+
+# lubridate
+library(lubridate); ymd("20140108")
+mdy("08/04/2013")
+dmy("03-04-2013")
+
+# Dealing with times
+ymd_hms("2011-08-03 10:15:03")
+ymd_hms("2011-08-03 10:15:03",tz="Pacific/Auckland")
+?Sys.timezone
+
+# Some functions have slightly different syntax
+x = dmy(c("1jan2013", "2jan2013", "31mar2013", "30jul2013"))
+wday(x[1])
+wday(x[1],label=TRUE)
